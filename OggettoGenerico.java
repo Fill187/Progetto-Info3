@@ -24,11 +24,11 @@ public class OggettoGenerico extends Elemento {
         this.difensivo = difensivo;
     }
 
-    public void raccogli() {
+    public void raccogli(){
         System.out.println("Hai raccolto l'oggetto: " + nome);
     }
 
-    public String stampaDescrizione() {
+    public String stampaDescrizione(){
         return "oggetto: " + nome + ", " + descrizione + ", Utilita: " + utilita + ", Difensivo: " + difensivo;
     }
 

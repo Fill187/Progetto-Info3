@@ -34,12 +34,12 @@ public class Pozione extends Elemento {
         this.buffStatistiche = buffStatistiche;
     }
 
-    public void raccogli() {
+    public void raccogli(){
         System.out.println("Hai raccolto la pozione: " + nome);
     }
 
     @Override
-    public String stampaDescrizione() {
+    public String stampaDescrizione(){
         return "pozione: " + nome + ", " + descrizione + ", Cura: " + effettoCura + ", Veleno: " + effettoVeleno + ", Buff: " + buffStatistiche;
     }
 }

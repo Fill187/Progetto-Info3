@@ -34,11 +34,11 @@ public class Arma extends Elemento {
         this.usura = usura;
     }
 
-    public void raccogli() {
+    public void raccogli(){
         System.out.println("Hai raccolto l'arma: " + nome);
     }
 
-    public String stampaDescrizione() {
+    public String stampaDescrizione(){
         return "arma: " + nome + ", " + descrizione + ", Danno: " + danno + ", Raggio: " + raggioAzione + ", Usura: " + usura;
     }
 }
