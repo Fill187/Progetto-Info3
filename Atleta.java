@@ -1,7 +1,7 @@
 public class Atleta extends Giocatore {
 
-    public Atleta(String nome) {
-        super(nome, 110, 20, 12);
+    public Atleta() {
+        super("Atleta", 110, 20, 12);
     }
 
     public void trasportaTutto(){
@@ -11,7 +11,7 @@ public class Atleta extends Giocatore {
 
     @Override
     public String stampaDescrizione() {
-        return "atleta " + nome + ", Vita: " + vita + ", Attacco: " + attacco + ", Difesa: " + difesa;
+        return "atleta: " + nome + ", health: " + vita + ", attack: " + attacco + ", defense: " + difesa;
     }
     
 }

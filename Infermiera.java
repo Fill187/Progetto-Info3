@@ -1,6 +1,6 @@
 public class Infermiera extends Giocatore {
-    public Infermiera(String nome) {
-        super(nome, 100, 10, 10);
+    public Infermiera() {
+        super("Infermiera", 100, 10, 10);
     }
 
     public void curaCostante(){
@@ -9,6 +9,6 @@ public class Infermiera extends Giocatore {
     }
 
     public String stampaDescrizione(){
-        return "infermiere " + nome + ", Vita: " + vita + ", Attacco: " + attacco + ", Difesa: " + difesa;
+        return "infermiere: " + nome + ", health: " + vita + ", attack: " + attacco + ", defense: " + difesa;
     }
 }

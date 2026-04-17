@@ -1,6 +1,6 @@
 public class ScienziatoPazzo extends Giocatore {
-    public ScienziatoPazzo(String nome) {
-        super(nome, 80, 15, 8);
+    public ScienziatoPazzo() {
+        super("Scienziato Pazzo", 80, 15, 8);
     }
     
     public void potenziaPozione(Pozione p){
@@ -10,6 +10,6 @@ public class ScienziatoPazzo extends Giocatore {
     }
 
     public String stampaDescrizione() {
-        return "scienziato pazzo " + nome + ", Vita: " + vita + ", Attacco: " + attacco + ", Difesa: " + difesa;
+        return "scienziato pazzo: " + nome + ", health: " + vita + ", attack: " + attacco + ", defense: " + difesa;
     }
 }

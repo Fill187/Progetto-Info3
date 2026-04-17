@@ -1,6 +1,6 @@
 public class Veterano extends Giocatore {
-    public Veterano(String nome) {
-        super(nome, 120, 25, 15);
+    public Veterano() {
+        super("Veterano", 120, 25, 15);
     }
     
     public void attaccoDevastante(Nemico nemico){
@@ -10,6 +10,6 @@ public class Veterano extends Giocatore {
     }
 
     public String stampaDescrizione(){
-        return "veterano " + nome + ", Vita: " + vita + ", Attacco: " + attacco + ", Difesa: " + difesa;
+        return "veterano: " + nome + ", health: " + vita + ", Attack: " + attacco + ", Defense: " + difesa;
     }
 }

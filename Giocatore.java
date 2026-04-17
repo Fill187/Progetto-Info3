@@ -76,6 +76,6 @@ public class Giocatore {
     }
 
     public String stampaDescrizione(){
-        return "giocatore " + nome + ", Vita: " + vita + ", Attacco: " + attacco + ", Difesa: " + difesa;
+        return "giocatore " + nome + ", health: " + vita + ", attack: " + attacco + ", defense: " + difesa;
     }
 }
