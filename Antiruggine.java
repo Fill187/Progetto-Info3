@@ -1,30 +1,59 @@
-public class Antiruggine extends Pozione{
+public class Antiruggine extends Pozione {
 
-    public Antiruggine(String nome, String descrizione, int effettoCura, int effettoVeleno, String buffStatistiche) {
-        super("Pozione Antiruggine", "Pozione antiruggine per evitare di venire arrugginito da oggetti vecchi e pericolosi e cura 2", 2, 0, "Rimuove la ruggine di torno");
+    private boolean consumata = false;
+
+    public Antiruggine() {
+        super(
+                "Anti-Rust Potion",
+                "Anti-rust potion that prevents corrosion from old and dangerous objects and heals 2 HP",
+                2,
+                0,
+                "Removes rust effects"
+        );
     }
 
-    public String getBuffStatistiche() {
-        return buffStatistiche;
+    public void rimuoviRuggine(Giocatore g) {
+        System.out.println("The anti-rust potion removes all rust effects from the player.");
     }
 
-    public String getDescrizione() {
-        return descrizione;
+    public void usa(Giocatore g) {
+        if (consumata) {
+            System.out.println(nome + " has already been consumed.");
+            return;
+        }
+
+        System.out.println("You drink the " + nome + ".");
+
+        int cura = getEffettoCura();
+        int veleno = getEffettoVeleno();
+
+        if (cura > 0) {
+            g.setVita(g.getVita() + cura);
+            System.out.println("You recover " + cura + " HP.");
+        }
+
+        if (veleno > 0) {
+            g.setVita(g.getVita() - veleno);
+            System.out.println("The potion deals " + veleno + " damage.");
+        }
+
+        rimuoviRuggine(g);
+
+        consumata = true;
+        System.out.println(nome + " has been consumed.");
     }
 
-    public int getEffettoCura() {
-        return effettoCura;
+    public String stampaDescrizione() {
+        return "Potion: " + nome +
+                ", Description: " + descrizione +
+                ", Heal: " + getEffettoCura() +
+                ", Poison: " + getEffettoVeleno() +
+                ", Effect: " + getBuffStatistiche() +
+                ", Consumed: " + consumata;
     }
 
-    public int getEffettoVeleno() {
-        return effettoVeleno;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-    
-    public String stampaDescrizione(){
-        return "Nome: "+nome+", Descrizione: "+descrizione+", Cura:"+effettoCura+", Danno: "+effettoCura+", Effetto generale: "+buffStatistiche;
+    @Override
+    public String toString() {
+        return stampaDescrizione();
     }
 }
