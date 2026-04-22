@@ -7,6 +7,15 @@ public abstract class Elemento {
         this.descrizione = descrizione;
     }
 
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
     public abstract void raccogli();
+
     public abstract String stampaDescrizione();
 }
