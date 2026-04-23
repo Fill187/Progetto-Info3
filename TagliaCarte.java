@@ -26,12 +26,10 @@ public class TagliaCarte extends Arma {
             System.out.println(getNome() + " is too damaged to perform the special move.");
             return;
         }
-
         int dannoSpeciale = (getDanno() + bonusAffilatura) * 2;
         System.out.println("Special move! The Card Cutter performs a rapid strike dealing " + dannoSpeciale + " damage.");
         n.setVita(n.getVita() - dannoSpeciale);
         setUsura(getUsura() + 15);
-
         if (eRotta()) {
             System.out.println(getNome() + " broke after the special move!");
         }
@@ -43,18 +41,14 @@ public class TagliaCarte extends Arma {
             System.out.println(getNome() + " is broken and cannot be used.");
             return;
         }
-
         int dannoTotale = getDanno() + bonusAffilatura;
-
         if (colpoCritico()) {
             dannoTotale *= 2;
             System.out.println("Critical hit! Damage doubled.");
         }
-
         System.out.println("You strike " + n.getNome() + " with the " + getNome() + " dealing " + dannoTotale + " damage.");
         n.setVita(n.getVita() - dannoTotale);
         setUsura(getUsura() + 8);
-
         if (eRotta()) {
             System.out.println(getNome() + " broke!");
         }
