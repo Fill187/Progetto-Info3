@@ -48,7 +48,7 @@ public class Nemico {
     }
 
     public String stampaDescrizione() {
-        return "Nemico: " + nome + ", Vita: " + vita + ", Stordito: " + stordito + ", Sbilanciato: " + sbilanciato + ", Distanza: " + distanza;
+        return "Enemy: " + nome + ", Health: " + vita + ", Stunned: " + stordito + ", Unbalance: " + sbilanciato + ", Distance: " + distanza;
     }
 
     @Override
