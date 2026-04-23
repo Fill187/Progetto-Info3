@@ -1,30 +1,57 @@
 public class Bibbia extends Arma {
 
-    public Bibbia(String nome, String descrizione, int danno, int raggioAzione, int usura) {
-        super("Bibbia", "Libro sacro che può venire lanciato oppure dato in testa", 4, 2, 0);
+    private double probabilitaCritico = 0.15;
+
+    public Bibbia() {
+        super("Holy Bible", "A sacred book used as a blunt weapon or thrown with divine force", 4, 2, 0);
     }
 
-    public int getDanno() {
-        return danno;
+    public boolean colpoCritico() {
+        return Math.random() < probabilitaCritico;
     }
 
-    public String getDescrizione() {
-        return descrizione;
+    public void benedizione(Nemico n) {
+        if (eRotta()) {
+            System.out.println(getNome() + " is too damaged to unleash a blessing.");
+            return;
+        }
+
+        int danno = getDanno() + 3;
+        System.out.println("A holy light bursts from the Bible! Deals " + danno + " extra damage.");
+        n.setVita(n.getVita() - danno);
+        setUsura(getUsura() + 12);
     }
 
-    public String getNome() {
-        return nome;
+    @Override
+    public void usa(Nemico n) {
+        if (eRotta()) {
+            System.out.println(getNome() + " is broken and cannot be used.");
+            return;
+        }
+
+        int dannoTotale = getDanno();
+
+        if (colpoCritico()) {
+            dannoTotale *= 2;
+            System.out.println("Holy critical hit! Damage doubled.");
+        }
+
+        System.out.println("You strike " + n.getNome() + " with the Holy Bible dealing " + dannoTotale + " damage.");
+        n.setVita(n.getVita() - dannoTotale);
+        setUsura(getUsura() + 7);
+
+        if (eRotta()) {
+            System.out.println(getNome() + " broke!");
+        }
     }
 
-    public int getRaggioAzione() {
-        return raggioAzione;
+    @Override
+    public String stampaDescrizione() {
+        return getNome() + ", Description: " + getDescrizione() + ", Damage: " + getDanno() + ", Range: " + getRaggioAzione() + ", Wear: " + getUsura() + ", Crit Chance: " + (int)(probabilitaCritico * 100) + "%";
     }
 
-    public int getUsura() {
-        return usura;
-    }
-    
-    public String stampaDescrizione(){
-        return nome+", Descrizione: "+descrizione+", Danno: "+danno+", Raggio di Azione: "+raggioAzione+", Usura: "+usura; 
+    @Override
+    public String toString() {
+        return stampaDescrizione();
     }
 }
