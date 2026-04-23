@@ -1,30 +1,41 @@
-public class Manubrio extends Arma{
+public class Manubrio extends Arma {
 
-    public Manubrio(String nome, String descrizione, int danno, int raggioAzione, int usura) {
-        super("Manubrio", "Manubrio da 5kg che si può usare siamo come spada sia come lanciabile ma è molto pesante", 4, 3, 0);
+    private double probabilitaSbilanciamento = 0.30;
+
+    public Manubrio() {
+        super("Dumbbell", "A 5kg dumbbell usable as a heavy melee weapon or throwable object", 4, 3, 0);
     }
 
-    public int getDanno() {
-        return danno;
+    public void sbilancia(Nemico n) {
+        if (Math.random() < probabilitaSbilanciamento) {
+            System.out.println("The Dumbbell knocks the enemy off balance! Their accuracy is reduced.");
+            n.setSbilanciato(true);
+        }
     }
 
-    public String getDescrizione() {
-        return descrizione;
+    @Override
+    public void usa(Nemico n) {
+        if (eRotta()) {
+            System.out.println(getNome() + " is broken and cannot be used.");
+            return;
+        }
+        int dannoTotale = getDanno();
+        System.out.println("You swing the Dumbbell at " + n.getNome() + " dealing " + dannoTotale + " damage.");
+        n.setVita(n.getVita() - dannoTotale);
+        sbilancia(n);
+        setUsura(getUsura() + 12);
+        if (eRotta()) {
+            System.out.println(getNome() + " broke!");
+        }
     }
 
-    public String getNome() {
-        return nome;
+    @Override
+    public String stampaDescrizione() {
+        return getNome() + ", Description: " + getDescrizione() + ", Damage: " + getDanno() + ", Range: " + getRaggioAzione() + ", Wear: " + getUsura() + ", Off-Balance Chance: " + (int)(probabilitaSbilanciamento * 100) + "%";
     }
 
-    public int getRaggioAzione() {
-        return raggioAzione;
-    }
-
-    public int getUsura() {
-        return usura;
-    }
-    
-    public String stampaDescrizione(){
-        return nome+", Descrizione: "+descrizione+", Danno: "+danno+", Raggio di Azione: "+raggioAzione+", Usura: "+usura; 
+    @Override
+    public String toString() {
+        return stampaDescrizione();
     }
 }
