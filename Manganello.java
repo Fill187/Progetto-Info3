@@ -1,30 +1,41 @@
 public class Manganello extends Arma {
 
-    public Manganello(String nome, String descrizione, int danno, int raggioAzione, int usura) {
-        super("Manganello", "Arma molto famosa nella polizia utilizzabile negli scontri ravvicinati", 6, 1, 0);
+    private double probabilitaStordimento = 0.35;
+
+    public Manganello() {
+        super("Police Baton", "A solid police baton used for close combat and capable of stunning enemies", 6, 1, 0);
     }
 
-    public int getDanno() {
-        return danno;
+    public void stordisci(Nemico n) {
+        if (Math.random() < probabilitaStordimento) {
+            System.out.println("The Police Baton stuns the enemy! They lose their next turn.");
+            n.setStordito(true);
+        }
     }
 
-    public String getDescrizione() {
-        return descrizione;
+    @Override
+    public void usa(Nemico n) {
+        if (eRotta()) {
+            System.out.println(getNome() + " is broken and cannot be used.");
+            return;
+        }
+        int dannoTotale = getDanno();
+        System.out.println("You strike " + n.getNome() + " with the Police Baton dealing " + dannoTotale + " damage.");
+        n.setVita(n.getVita() - dannoTotale);
+        stordisci(n);
+        setUsura(getUsura() + 10);
+        if (eRotta()) {
+            System.out.println(getNome() + " broke!");
+        }
     }
 
-    public String getNome() {
-        return nome;
+    @Override
+    public String stampaDescrizione() {
+        return getNome() + ", Description: " + getDescrizione() + ", Damage: " + getDanno() + ", Range: " + getRaggioAzione() + ", Wear: " + getUsura() + ", Stun Chance: " + (int)(probabilitaStordimento * 100) + "%";
     }
 
-    public int getRaggioAzione() {
-        return raggioAzione;
-    }
-
-    public int getUsura() {
-        return usura;
-    }
-    
-    public String stampaDescrizione(){
-        return nome+", Descrizione: "+descrizione+", Danno: "+danno+", Raggio di Azione: "+raggioAzione+", Usura: "+usura; 
+    @Override
+    public String toString() {
+        return stampaDescrizione();
     }
 }
