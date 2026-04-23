@@ -3,13 +3,7 @@ public class Antiruggine extends Pozione {
     private boolean consumata = false;
 
     public Antiruggine() {
-        super(
-                "Anti-Rust Potion",
-                "Anti-rust potion that prevents corrosion from old and dangerous objects and heals 2 HP",
-                2,
-                0,
-                "Removes rust effects"
-        );
+        super("Anti-Rust Potion", "Anti-rust potion that prevents corrosion from old and dangerous objects and heals 2 HP", 2, 0, "Removes rust effects");
     }
 
     public void rimuoviRuggine(Giocatore g) {
@@ -44,12 +38,7 @@ public class Antiruggine extends Pozione {
     }
 
     public String stampaDescrizione() {
-        return "Potion: " + nome +
-                ", Description: " + descrizione +
-                ", Heal: " + getEffettoCura() +
-                ", Poison: " + getEffettoVeleno() +
-                ", Effect: " + getBuffStatistiche() +
-                ", Consumed: " + consumata;
+        return "Potion: " + nome + ", Description: " + descrizione + ", Heal: " + getEffettoCura() + ", Poison: " + getEffettoVeleno() + ", Effect: " + getBuffStatistiche() + ", Consumed: " + consumata;
     }
 
     @Override
