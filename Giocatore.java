@@ -56,7 +56,7 @@ public class Giocatore {
     public void attacca(Nemico nemico){
         int danno = Math.max(0, attacco - nemico.difesa);
         nemico.vita -= danno;
-        System.out.println(nome + " attacca " + nemico.nome + " causando " + danno + " danni. Vita nemica rimasta: " + nemico.vita);
+        System.out.println(nome + " attacks " + nemico.nome + " causing " + danno + " damage. Enemies health now: " + nemico.vita);
     }
 
     public void usaOggetto(Elemento elemento){
@@ -64,12 +64,12 @@ public class Giocatore {
             Pozione p = (Pozione) elemento;
             vita += p.effettoCura;
             vita -= p.effettoVeleno;
-            System.out.println(nome + " usa " + p.nome + ". Vita: " + vita + ". Buff: " + p.buffStatistiche);
+            System.out.println(nome + " Uses " + p.nome + ". Health: " + vita + ". Buff: " + p.buffStatistiche);
             inventario.rimuovi(p);
         }else if(elemento instanceof Arma){
             Arma a = (Arma) elemento;
             attacco += a.danno;
-            System.out.println(nome + " equipaggia " + a.nome + ". Attacco: " + attacco);
+            System.out.println(nome + " equippes " + a.nome + ". attaccks: " + attacco);
         }else{
             System.out.println(nome + " usa " + elemento.nome + ": " + elemento.descrizione);
         }
