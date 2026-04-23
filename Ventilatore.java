@@ -1,23 +1,37 @@
+public class Ventilatore extends OggettoGenerico {
 
+    private boolean smontato = false;
 
-public class Ventilatore extends OggettoGenerico{
-    public Ventilatore(String nome, String descrizione, String utilita, boolean difensivo) {
-        super("Ventilatore", "Ventilatore che se smontato diventa mortale", "Serve per allontanare gli avversari nemici", true);
+    public Ventilatore() {
+        super("Fan", "A portable fan that, when dismantled, becomes surprisingly dangerous", "Used to push enemies away", true);
     }
 
-    public String getDescrizione() {
-        return descrizione;
+    public void smonta() {
+        if (!smontato) {
+            smontato = true;
+            System.out.println("You dismantle the Fan. The blades become sharp and deadly.");
+        } else {
+            System.out.println("The Fan is already dismantled.");
+        }
     }
 
-    public String getNome() {
-        return nome;
+    public void usa(Giocatore g, Nemico n) {
+        if (!smontato) {
+            System.out.println("You use the Fan to push " + n.getNome() + " backwards.");
+            n.setDistanza(n.getDistanza() + 2);
+        } else {
+            System.out.println("You slash " + n.getNome() + " with the dismantled Fan blades dealing 3 damage.");
+            n.setVita(n.getVita() - 3);
+        }
     }
 
-    public String getUtilita() {
-        return utilita;
+    @Override
+    public String stampaDescrizione() {
+        return "Name: " + getNome() + ", Description: " + getDescrizione() + ", Utility: " + getUtilita() + ", Dismantled: " + smontato;
     }
-        
-    public String stampaDescrizione(){
-        return "Nome: "+nome+", Descrizione: "+descrizione+", Utilita:"+utilita;
+
+    @Override
+    public String toString() {
+        return stampaDescrizione();
     }
 }
