@@ -1,22 +1,18 @@
 public class Nemico {
+
     public String nome;
     public int vita;
-    public int attacco;
-    public int difesa;
+    public boolean stordito = false;
+    public boolean sbilanciato = false;
+    public int distanza = 0;
 
-    public Nemico(String nome, int vita, int attacco, int difesa) {
+    public Nemico(String nome, int vita) {
         this.nome = nome;
         this.vita = vita;
-        this.attacco = attacco;
-        this.difesa = difesa;
     }
 
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public int getVita() {
@@ -27,23 +23,36 @@ public class Nemico {
         this.vita = vita;
     }
 
-    public int getAttacco() {
-        return attacco;
+    public boolean isStordito() {
+        return stordito;
     }
 
-    public void setAttacco(int attacco) {
-        this.attacco = attacco;
+    public void setStordito(boolean stordito) {
+        this.stordito = stordito;
     }
 
-    public int getDifesa() {
-        return difesa;
+    public boolean isSbilanciato() {
+        return sbilanciato;
     }
 
-    public void setDifesa(int difesa) {
-        this.difesa = difesa;
+    public void setSbilanciato(boolean sbilanciato) {
+        this.sbilanciato = sbilanciato;
     }
 
-    public String stampaDescrizione(){
-        return "nemico: " + nome + ", health: " + vita + ", attack: " + attacco + ", defense: " + difesa;
+    public int getDistanza() {
+        return distanza;
+    }
+
+    public void setDistanza(int distanza) {
+        this.distanza = distanza;
+    }
+
+    public String stampaDescrizione() {
+        return "Nemico: " + nome + ", Vita: " + vita + ", Stordito: " + stordito + ", Sbilanciato: " + sbilanciato + ", Distanza: " + distanza;
+    }
+
+    @Override
+    public String toString() {
+        return stampaDescrizione();
     }
 }
