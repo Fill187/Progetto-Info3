@@ -42,7 +42,7 @@ public class Arma extends Elemento {
 
     public void usa(Nemico n) {
         if (eRotta()) {
-            System.out.println(nome + " è rotta e non può essere usata.");
+            System.out.println(nome + " It is broken, so it can't be used.");
             return;
         }
 
@@ -50,7 +50,7 @@ public class Arma extends Elemento {
         usura += 10;
 
         if (eRotta()) {
-            System.out.println(nome + " si è rotta!");
+            System.out.println(nome + "It broke");
         }
     }
 
@@ -60,10 +60,10 @@ public class Arma extends Elemento {
     }
 
     public void raccogli() {
-        System.out.println("Hai raccolto l'arma: " + nome);
+        System.out.println("You picked up a weapon: " + nome);
     }
 
     public String stampaDescrizione() {
-        return "arma: " + nome + ", " + descrizione + ", Danno: " + danno + ", Raggio: " + raggioAzione + ", Usura: " + usura;
+        return "Weapon: " + nome + ", " + descrizione + ", Damage: " + danno + ", Range: " + raggioAzione + ", Wear: " + usura;
     }
 }
