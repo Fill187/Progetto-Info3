@@ -8,6 +8,9 @@ public class Stanza {
     public String descrizione;
     public Nemico custode;
     public List<Elemento> bottino = new ArrayList<>();
+    
+    // Direzioni per il grafo
+    public Stanza nord, sud, est, ovest;
 
     public Stanza(int numeroPiano, String nome, String descrizione) {
         this.numeroPiano = numeroPiano;
@@ -22,52 +25,36 @@ public class Stanza {
         this.custode = custode;
     }
 
+    public void impostaUscite(Stanza n, Stanza s, Stanza e, Stanza o) {
+        this.nord = n;
+        this.sud = s;
+        this.est = e;
+        this.ovest = o;
+    }
+
     public void aggiungiOggetto(Elemento e) {
         bottino.add(e);
     }
 
+    public List<Elemento> getBottino() { return bottino; }
+    public int getNumeroPiano() { return numeroPiano; }
+    public String getNome() { return nome; }
+    public String getDescrizione() { return descrizione; }
+    public Nemico getCustode() { return custode; }
+    public void setCustode(Nemico custode) { this.custode = custode; }
 
-    public List<Elemento> getBottino() {
-        return bottino;
-    }
-
-    public int getNumeroPiano() {
-        return numeroPiano;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getDescrizione() {
-        return descrizione;
-    }
-
-    public Nemico getCustode() {
-        return custode;
-    }
-
-    public void setCustode(Nemico custode) {
-        this.custode = custode;
-    }
-
-    public void entra(){
-        System.out.println("You entered: " + nome + " (Floor " + numeroPiano + ")");
-        System.out.println("Description: " + descrizione);
-        if (custode != null) {
-            System.out.println("Warning! " + custode.getNome() + " blocks your way!");
+    public void entra() {
+        System.out.println("\n--- [ Floor " + numeroPiano + " - " + nome + " ] ---");
+        System.out.println(descrizione);
+        if (custode != null && custode.getVita() > 0) {
+            System.out.println("WARNING! " + custode.getNome() + " is here and looks dangerous!");
         }
         if (!bottino.isEmpty()) {
-            System.out.println("Items found: " + bottino);
+            System.out.print("Items in the room: ");
+            for (Elemento e : bottino) {
+                System.out.print("[" + e.getNome() + "] ");
+            }
+            System.out.println();
         }
-    }
-
-    public String stampaDescrizione(){
-        return "Room: " + nome + ", Floor: " + numeroPiano + ", Description: " + descrizione + ", Guardian: " + (custode != null ? custode.getNome() : "none") + ", Loot: " + bottino;
-    }
-
-    @Override
-    public String toString() {
-        return stampaDescrizione();
     }
 }

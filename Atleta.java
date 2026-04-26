@@ -9,7 +9,6 @@ public class Atleta extends Giocatore {
         inventario.mostra();
     }
 
-    @Override
     public String stampaDescrizione() {
         return "atleta: " + nome + ", health: " + vita + ", attack: " + attacco + ", defense: " + difesa;
     }
